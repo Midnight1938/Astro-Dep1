@@ -1,0 +1,22 @@
+---
+import Nav from "../pages/components/Nav";
+
+const {title} = Astro.props
+---
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="digital Art Service For All"/>
+    <meta title={title}/>
+    <title>digital Artists</title>
+</head>
+<body class="">
+<main>
+    <Nav client:load/>
+    <slot/>
+    <!-- All pages Render Here -->
+</main>
+</body>
+</html>
