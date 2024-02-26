@@ -1,0 +1,109 @@
+---
+
+---
+
+<div class="relative mx-12 flex flex-col items-center justify-center xl:flex-row xl:gap-36">
+    <div class="w-full xl:w-1/2">
+
+        <h1 class="text-4xl">
+            Enter Hua's Dazzled Digital <span id="scribble" class="font-bold"> Doodle Universe!</span>
+        </h1>
+        <div class="relative">
+            <svg class="absolute h-full w-full overflow-visible">
+                <defs>
+                    <linearGradient id="gradient" x1="2.00009" y1="50.9998" x2="589" y2="275.5"
+                                    gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#DC3A2B"/>
+                        <stop offset="100%" stop-color="#E18510"/>
+                    </linearGradient>
+                </defs>
+                <path id="border-path"
+                      fill="none"
+                      stroke="url(#gradient)"
+                      stroke-width="4"
+                      d=""/>
+            </svg>
+
+            <p id="anim-p" class="p-6 text-lg">You've stumbled upon <span class="font-bold text-primary">Hua's</span>
+                little
+                corner of the internet, where creativity runs rampant and normal is just
+                a setting on a washing machine.<br/>
+                <br/>
+                Stick around, explore the digital masterpieces, and enjoy the occasional
+                artistic shenanigans. It's more fun than you'd think!
+                <br/>
+                <br/>
+                Delight in the unpredictable artistic shenanigans that burst forth from the
+                canvas of this digital universe. Here, every visit is an adventure, every
+                glance an exploration. Dive in, the pixels are warm!</p>
+        </div>
+        <div class="flex justify-center pt-12 text-center mb-12 xl:gap-16">
+            <div class="w-32">
+                <h2>Artsy Posts</h2>
+                <p id="art-counter" class="text-3xl font-bold">85</p>
+            </div>
+            <div class="w-32">
+                <h2>ArtStation</h2>
+                <p id="subs-counter" class="text-3xl font-bold">1.2Lk</p>
+            </div>
+            <div class="w-32">
+                <h2>Reviews</h2>
+                <p id="review-counter" class="text-3xl font-bold">50</p>
+            </div>
+        </div>
+    </div>
+    <div class="relative">
+        <img class="rounded-lg h-full" src="/images/main-portrait.jpg" alt="Self portrait"/>
+        <div class="absolute bottom-0 right-0 translate-y-1/4">
+            <img src="/images/paint.png" alt="Paint Splash"/>
+        </div>
+    </div>
+</div>
+
+<div class="mt-12 h-4 w-full bg-black"></div>
+
+<style>
+    #border-path {
+        animation: draw 1s forwards 0.5s ease-in;
+    }
+
+    @keyframes draw {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+</style>
+
+<script>
+    function updatepath() {
+        const textMain = document.querySelector('#anim-p') as HTMLElement
+        const path = document.querySelector('#border-path') as SVGPathElement
+
+        if (textMain && path) {
+            path.setAttribute('d',
+                `M0,0 V${textMain.offsetHeight} H${textMain.offsetWidth} v${textMain.offsetHeight / 2}`)
+        }
+        const pathLength = path.getTotalLength()
+        path.style.strokeDasharray = pathLength.toString()
+        path.style.strokeDashoffset = pathLength.toString()
+    }
+
+    function incrementCounter(selector: string, current: number, target: number, duration: number, letter: string = "") {
+        let counter = document.getElementById(selector)
+        let stepTime = Math.abs(Math.floor(duration / target))
+        if (current < target && counter) {
+            current++
+            counter.innerText = current.toString() + letter
+            setTimeout(() => incrementCounter(selector, current, target, duration, letter), stepTime)
+        }
+    }
+
+    // Incrementer
+    incrementCounter("art-counter", 0, 185, 1000)
+    incrementCounter("subs-counter", 0, 80, 1000, "Lk")
+    incrementCounter("review-counter", 0, 85, 1000)
+
+
+    window.addEventListener("DOMContentLoaded", updatepath)
+    window.addEventListener("resize", updatepath)
+</script>

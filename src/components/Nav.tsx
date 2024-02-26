@@ -1,6 +1,6 @@
 import {motion} from 'framer-motion'
 import {useState} from "react";
-import {useMediaQuery} from "../../util/useMediaQuery.tsx";
+import {useMediaQuery} from "../util/useMediaQuery.tsx";
 
 // preMade Functions
 const navMotion = {
@@ -43,7 +43,7 @@ export default function Nav() {
 
             {/* Title */}
             <h1 className="text-lg font-bold">
-                <a href="/">Hua.</a>
+                <a href="/public">Hua.</a>
             </h1>
 
             {/* Matches Helps check screen size better*/}
@@ -58,7 +58,7 @@ export default function Nav() {
             {!matches && (
                 <div
                     onClick={() => setToggled(prevToggle => !prevToggle)}
-                    className="space-y-1.5 cursor-pointer z-50">
+                    className="space-y-1.5 cursor-pointer z-40">
                     <motion.span animate={{
                         rotateZ: toggled ? 45 : 0,
                         y: toggled ? 8 : 0
@@ -77,7 +77,7 @@ export default function Nav() {
                 <motion.div
                     animate={{opacity: 1, x: 0}}
                     initial={{opacity: 0, x: 25}}
-                    className="fixed flex bg-white bottom-0 left-0 w-full h-screen items-center justify-center">
+                    className="fixed flex bg-white bottom-0 left-0 w-full h-screen items-center justify-center z-30">
                     <motion.div variants={navMotion}
                                 animate="visible" initial="hidden"
                                 className={"flex flex-col gap-24 text-lg"}>
