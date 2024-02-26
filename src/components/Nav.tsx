@@ -43,7 +43,7 @@ export default function Nav() {
 
             {/* Title */}
             <h1 className="text-lg font-bold">
-                <a href="/public">Hua.</a>
+                <a href="/">Hua.</a>
             </h1>
 
             {/* Matches Helps check screen size better*/}
